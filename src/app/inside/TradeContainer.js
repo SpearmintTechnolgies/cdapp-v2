@@ -148,7 +148,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellTokens",
-    args: [projectId, projects?.[7], sellValue == "0" ? "0" : parseEther(sellValue.toString() || 0)],
+    args: [projectId, projects?.[7], sellValue == "0" ? "0" : sellValue*1e18],
   });
 
   const { data: getBuyFee , queryKey: getBuyFeeQueryKey } = useReadContract({
@@ -162,7 +162,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellFee",
-    args: [sellValue == "0" ? "0" : parseEther(sellValue.toString()  || 0), projects?.[7]],
+    args: [sellValue == "0" ? "0" : sellValue*1e18, projects?.[7]],
   });
 
 
