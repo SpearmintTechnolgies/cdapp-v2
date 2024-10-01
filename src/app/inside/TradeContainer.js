@@ -129,14 +129,16 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
   });
 
   console.log("projects",projects);
+  console.log("POOL_ADDRESS",POOL_ADDRESS);
   
   
-  const { data: getTokensForAmount ,  queryKey: getTokensForAmountQueryKey } = useReadContract({
+  const { data: getTokensForAmount } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
     args: [projectId, projects?.[7], parseEther('1')],
   });
+
 
   // const { data: getSellTokens,  queryKey: getSellTokensQueryKey  } = useReadContract({
   //   abi: TOKEN_COIN_ABI,
