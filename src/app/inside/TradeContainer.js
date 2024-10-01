@@ -130,14 +130,14 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], parseEther(buyValue)],
+    args: [projectId, projects?.[7], parseEther(buyValue.toString())],
   });
 
   const { data: getSellTokens } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellTokens",
-    args: [projectId, projects?.[7], parseEther(sellValue)],
+    args: [projectId, projects?.[7], parseEther(sellValue.toString())],
   });
 
   const { data: getBuyFee } = useReadContract({
