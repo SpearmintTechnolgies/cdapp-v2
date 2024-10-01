@@ -39,10 +39,10 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
 
   const handleOnchange = (e) => {
     setBuyErr("");
-    alert(e)
+    // alert(e)
     const value = e.target.value;
     if (value >= 0) {
-      alert(value)
+      // alert(value)
       setBuyValue(value);
     }
   };
@@ -139,7 +139,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], buyValue == "0" ? "0" : parseEther(buyValue.toString() || 0)],
+    args: [projectId, projects?.[7], buyValue == "0" ? "0" : buyValue*1e18],
   });
   
 
@@ -155,7 +155,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyFee",
-    args: [ buyValue == "0" ? "0" : parseEther(buyValue.toString()  || 0), projects?.[7]],
+    args: [ buyValue == "0" ? "0" : buyValue*1e18, projects?.[7]],
   });
 
   const { data: getSellFee , queryKey: getSellFeeQueryKey } = useReadContract({
