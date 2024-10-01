@@ -27,7 +27,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
   const hide = () => {
     setModal(null);
   };
-  // const { coinData, getCrown, getCoin } = useContext(ContractContext);
+  const { coinData, getCrown, getCoin } = useContext(ContractContext);
   const queryClient = useQueryClient();
   const { data: blockNumber } = useBlockNumber({ watch: true });
   const [buyValue, setBuyValue] = useState("0");
@@ -120,39 +120,40 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     functionName: "allowance",
     args: [address, POOL_ADDRESS],
   });
-  const { data: projects } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "projects",
-    args: [projectId],
-  });
-  const { data: getTokensForAmount } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], parseEther(buyValue.toString())],
-  });
 
-  const { data: getSellTokens } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "getSellTokens",
-    args: [projectId, projects?.[7], parseEther(sellValue.toString())],
-  });
+  // const { data: projects } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "projects",
+  //   args: [projectId],
+  // });
+  // const { data: getTokensForAmount } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "getBuyTokens",
+  //   args: [projectId, projects?.[7], parseEther(buyValue.toString())],
+  // });
 
-  const { data: getBuyFee } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "getBuyFee",
-    args: [parseEther(buyValue.toString()), projects?.[7]],
-  });
+  // const { data: getSellTokens } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "getSellTokens",
+  //   args: [projectId, projects?.[7], parseEther(sellValue.toString())],
+  // });
 
-  const { data: getSellFee } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "getSellFee",
-    args: [parseEther(sellValue.toString()), projects?.[7]],
-  });
+  // const { data: getBuyFee } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "getBuyFee",
+  //   args: [parseEther(buyValue.toString()), projects?.[7]],
+  // });
+
+  // const { data: getSellFee } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "getSellFee",
+  //   args: [parseEther(sellValue.toString()), projects?.[7]],
+  // });
 
 
   const { writeContractAsync } = useWriteContract();
