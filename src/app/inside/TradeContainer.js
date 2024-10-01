@@ -136,7 +136,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], "0"],
+    args: [projectId, projects?.[7], buyValue == "0" ? "0" : parseEther(buyValue.toString())],
   });
 
 
