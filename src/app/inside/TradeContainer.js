@@ -35,15 +35,16 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
   const [show, setShow] = useState(false);
 
   const [coinTokenSymbol, setCoinTokenSymbol] = useState("CORE");
+  const [sellValue, setSellValue] = useState("0");
 
   const handleOnchange = (e) => {
     setBuyErr("");
     const value = e.target.value;
     if (value >= 0) {
+      alert(value)
       setBuyValue(value);
     }
   };
-  const [sellValue, setSellValue] = useState("0");
   const [sellErr, setSellErr] = useState("");
   const handleSellOnchange = (e) => {
     setSellErr("");
