@@ -151,14 +151,14 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyFee",
-    args: [ buyValue == "0" ? "0" : parseEther(buyValue.toString(), projects?.[7]],
+    args: [ buyValue == "0" ? "0" : parseEther(buyValue.toString()), projects?.[7]],
   });
 
   const { data: getSellFee , queryKey: getSellFeeQueryKey } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellFee",
-    args: [parseEther(sellValue.toString()), projects?.[7]],
+    args: [sellValue == "0" ? "0" : parseEther(sellValue.toString()), projects?.[7]],
   });
 
 
