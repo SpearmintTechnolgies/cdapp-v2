@@ -136,7 +136,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], buyValue == "0" ? "0" : parseEther(buyValue.toString())],
+    args: [projectId, projects?.[7], buyValue == "0" ? "0" : parseEther(buyValue.toString() || 0)],
   });
 
 
@@ -144,21 +144,21 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellTokens",
-    args: [projectId, projects?.[7], sellValue == "0" ? "0" : parseEther(sellValue.toString())],
+    args: [projectId, projects?.[7], sellValue == "0" ? "0" : parseEther(sellValue.toString() || 0)],
   });
 
   const { data: getBuyFee , queryKey: getBuyFeeQueryKey } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyFee",
-    args: [ buyValue == "0" ? "0" : parseEther(buyValue.toString()), projects?.[7]],
+    args: [ buyValue == "0" ? "0" : parseEther(buyValue.toString()  || 0), projects?.[7]],
   });
 
   const { data: getSellFee , queryKey: getSellFeeQueryKey } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellFee",
-    args: [sellValue == "0" ? "0" : parseEther(sellValue.toString()), projects?.[7]],
+    args: [sellValue == "0" ? "0" : parseEther(sellValue.toString()  || 0), projects?.[7]],
   });
 
 
