@@ -136,7 +136,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], "1000000000"],
+    args: [projectId, projects?.[7], "0"],
   });
 
 
