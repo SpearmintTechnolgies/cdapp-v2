@@ -56,103 +56,103 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     setBuyValue(0);
     setSellValue(0);
   };
-  // const { address, isConnected } = useAccount();
-  // const { data: balance, queryKey: balanceQueryKey } = useBalance({
-  //   address: address,
-  // });
+  const { address, isConnected } = useAccount();
+  const { data: balance, queryKey: balanceQueryKey } = useBalance({
+    address: address,
+  });
   
   
-  // const { data: TOTAL_RAISE } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "TOTAL_RAISE",
-  //   args: [],
-  // });
-  // const { data: alternateToken } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "alternateToken",
-  //   args: [],
-  // });
+  const { data: TOTAL_RAISE } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "TOTAL_RAISE",
+    args: [],
+  });
+  const { data: alternateToken } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "alternateToken",
+    args: [],
+  });
 
-  // const { data: alternateTokenSymbol } = useReadContract({
-  //   abi: erc20Abi,
-  //   address: alternateToken,
-  //   functionName: "symbol",
-  //   args: [],
-  // });
-  // useEffect(() => {
-  //   if (alternateTokenSymbol !== undefined && tokenData?.isToken === true) {
-  //     setCoinTokenSymbol(alternateTokenSymbol);
-  //   }
-  // }, [alternateTokenSymbol]);
-  // const { data: tokenBalance, queryKey: tokenBalanceQueryKey } =
-  //   useReadContract({
-  //     address: tokenData?.address,
-  //     abi: erc20Abi,
-  //     functionName: "balanceOf",
-  //     args: [address],
-  //   });
-  // // console.log("tokenBalance",formatEther(tokenBalance));
+  const { data: alternateTokenSymbol } = useReadContract({
+    abi: erc20Abi,
+    address: alternateToken,
+    functionName: "symbol",
+    args: [],
+  });
+  useEffect(() => {
+    if (alternateTokenSymbol !== undefined && tokenData?.isToken === true) {
+      setCoinTokenSymbol(alternateTokenSymbol);
+    }
+  }, [alternateTokenSymbol]);
+  const { data: tokenBalance, queryKey: tokenBalanceQueryKey } =
+    useReadContract({
+      address: tokenData?.address,
+      abi: erc20Abi,
+      functionName: "balanceOf",
+      args: [address],
+    });
+  // console.log("tokenBalance",formatEther(tokenBalance));
 
-  // const {
-  //   data: alternateTokenBalance,
-  //   queryKey: alternateTokenBalanceQueryKey,
-  // } = useReadContract({
-  //   address: alternateToken,
-  //   abi: erc20Abi,
-  //   functionName: "balanceOf",
-  //   args: [address],
-  // });
+  const {
+    data: alternateTokenBalance,
+    queryKey: alternateTokenBalanceQueryKey,
+  } = useReadContract({
+    address: alternateToken,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: [address],
+  });
 
-  // const { data: allowance, queryKey: allowanceQueryKey } = useReadContract({
-  //   abi: erc20Abi,
-  //   address: tokenData?.address,
-  //   functionName: "allowance",
-  //   args: [address, POOL_ADDRESS],
-  // });
-  // const {
-  //   data: alternateTokenAllowance,
-  //   queryKey: alternateTokenAllowanceQueryKey,
-  // } = useReadContract({
-  //   abi: erc20Abi,
-  //   address: alternateToken,
-  //   functionName: "allowance",
-  //   args: [address, POOL_ADDRESS],
-  // });
-  // const { data: projects } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "projects",
-  //   args: [projectId],
-  // });
-  // const { data: getTokensForAmount } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "getBuyTokens",
-  //   args: [projectId, projects?.[7], parseEther(buyValue)],
-  // });
+  const { data: allowance, queryKey: allowanceQueryKey } = useReadContract({
+    abi: erc20Abi,
+    address: tokenData?.address,
+    functionName: "allowance",
+    args: [address, POOL_ADDRESS],
+  });
+  const {
+    data: alternateTokenAllowance,
+    queryKey: alternateTokenAllowanceQueryKey,
+  } = useReadContract({
+    abi: erc20Abi,
+    address: alternateToken,
+    functionName: "allowance",
+    args: [address, POOL_ADDRESS],
+  });
+  const { data: projects } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "projects",
+    args: [projectId],
+  });
+  const { data: getTokensForAmount } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "getBuyTokens",
+    args: [projectId, projects?.[7], parseEther(buyValue)],
+  });
 
-  // const { data: getSellTokens } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "getSellTokens",
-  //   args: [projectId, projects?.[7], parseEther(sellValue)],
-  // });
+  const { data: getSellTokens } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "getSellTokens",
+    args: [projectId, projects?.[7], parseEther(sellValue)],
+  });
 
-  // const { data: getBuyFee } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "getBuyFee",
-  //   args: [parseEther(buyValue.toString()), projects?.[7]],
-  // });
+  const { data: getBuyFee } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "getBuyFee",
+    args: [parseEther(buyValue.toString()), projects?.[7]],
+  });
 
-  // const { data: getSellFee } = useReadContract({
-  //   abi: TOKEN_COIN_ABI,
-  //   address: POOL_ADDRESS,
-  //   functionName: "getSellFee",
-  //   args: [parseEther(sellValue.toString()), projects?.[7]],
-  // });
+  const { data: getSellFee } = useReadContract({
+    abi: TOKEN_COIN_ABI,
+    address: POOL_ADDRESS,
+    functionName: "getSellFee",
+    args: [parseEther(sellValue.toString()), projects?.[7]],
+  });
 
 
   const { writeContractAsync } = useWriteContract();
