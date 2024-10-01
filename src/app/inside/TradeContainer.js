@@ -121,18 +121,18 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     args: [address, POOL_ADDRESS],
   });
 
-  const { data: projects ,  queryKey: projectsQueryKey} = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "projects",
-    args: [projectId],
-  });
-  const { data: getTokensForAmount ,  queryKey: getTokensForAmountQueryKey } = useReadContract({
-    abi: TOKEN_COIN_ABI,
-    address: POOL_ADDRESS,
-    functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], parseEther(buyValue.toString())],
-  });
+  // const { data: projects ,  queryKey: projectsQueryKey} = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "projects",
+  //   args: [projectId],
+  // });
+  // const { data: getTokensForAmount ,  queryKey: getTokensForAmountQueryKey } = useReadContract({
+  //   abi: TOKEN_COIN_ABI,
+  //   address: POOL_ADDRESS,
+  //   functionName: "getBuyTokens",
+  //   args: [projectId, projects?.[7], parseEther(buyValue.toString())],
+  // });
 
   // const { data: getSellTokens,  queryKey: getSellTokensQueryKey  } = useReadContract({
   //   abi: TOKEN_COIN_ABI,
