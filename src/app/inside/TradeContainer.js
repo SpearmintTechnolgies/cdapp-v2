@@ -39,6 +39,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
 
   const handleOnchange = (e) => {
     setBuyErr("");
+    alert(e)
     const value = e.target.value;
     if (value >= 0) {
       alert(value)
