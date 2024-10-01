@@ -1,0 +1,171 @@
+.user {
+    font-family: var(--font-tomy);
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
+.user>div:first-child h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.user>div:first-child select {
+    outline: none;
+    border-radius: 10px;
+    padding: 5px;
+    /* border: 1px solid var(--dark); */
+    border: 1px solid #FFFFFF4D;
+    background: transparent;
+    color: var(--dark);
+    opacity: .8;
+}
+
+
+.user>div:first-child p {
+    border-radius: 10px;
+    /* border: 1px solid #FFFFFF4D; */
+    opacity: .8;
+}
+
+.user .right span {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: .5;
+}
+
+.user .right p {
+    font-size: 1.5rem;
+    text-align: center;
+    opacity: .8;
+    font-weight: 600;
+}
+
+.row2 {
+    font-family: var(--font-tomy);
+}
+
+
+
+.row2 .left,
+.row2 .right {
+    background-color: var(--bg-light);
+    border-radius: 20px;
+    width: 50%;
+}
+
+.row2 .left>div:first-child button,
+.row2 .right>div:first-child button {
+    border: none;
+    background: transparent;
+    color: var(--dark);
+    opacity: .4;
+    border-bottom: 2px solid transparent;
+}
+
+.row2 .right>div:first-child button:hover,
+.row2 .left>div:first-child button:hover {
+    border-bottom: 2px solid gray;
+}
+
+.leftcard img {
+    border-radius: 100px;
+}
+
+.leftcard p,
+.rightcard p {
+    font-size: 14px;
+    font-weight: normal;
+    opacity: .5;
+}
+
+.leftcard>button {
+    border: none;
+    background-color: transparent;
+    color: var(--main_color);
+}
+
+
+/* coin-crated card============================= */
+.card {
+    background: var(--light);
+    padding: 1rem;
+    border-radius: 1rem;
+    font-family: var(--font-tomy);
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+.card a {
+    color: var(--dark);
+}
+
+.card .secondrow span {
+    opacity: .5;
+    font-size: 12px;
+}
+
+.card .secondrow p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card .thirdrow p {
+    opacity: .7;
+    font-size: 12px;
+}
+
+.card .thirdrow p a:hover {
+    opacity: .8;
+}
+
+.card .thirdrow p.value {
+    opacity: 1;
+}
+
+@media (max-width:992px) {
+
+    .row2 .left,
+    .row2 .right {
+        width: 100%;
+    }
+}
+
+
+@media (max-width:575px) {
+    .user {
+        width: 95vw;
+    }
+    .user>div:first-child h1 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:416px) {
+
+    .user>div:first-child select,
+    .user>div:first-child p {
+        font-size: 12px;
+    }
+
+    .user .right span {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .user .right p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width:370px) {
+    .user{
+        padding: 1rem .5rem;
+    }
+    .card .thirdrow {
+        flex-direction: column;
+        gap: .5rem;
+    }
+}

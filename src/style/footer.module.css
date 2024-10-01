@@ -1,0 +1,21 @@
+.footer p{
+    opacity: .7;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0;
+}
+
+@media (max-width:576px) {
+    .footer{
+        padding: 0 1rem;
+    }
+}
+@media (max-width:416px) {
+    .footer p{
+        font-size: 14px;
+    }
+
+    .footer a img{
+        width: 20px;
+    }
+}

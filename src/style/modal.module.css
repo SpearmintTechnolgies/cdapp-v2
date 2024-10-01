@@ -1,0 +1,270 @@
+.token,
+.work,
+.manage,
+.profile,
+.reply,
+.slipage {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* background: #000000e1; */
+  background: var(--modal-bg);
+  backdrop-filter: blur(50px);
+  font-family: var(--font-tomy);
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.token > div,
+.work > div,
+.profile > div,
+.reply_container,
+.slipage_card {
+  /* background-color: var(--modal-card-bg); */
+  background-color: var(--bg-light);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 500px;
+  height: fit-content;
+}
+
+.token h1,
+.work h1,
+.profile h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.token form > div {
+  margin: 10px 0;
+}
+
+.token form > div > input,
+.profile input,
+.profile textarea,
+.token form > div > textarea,
+.reply_container form textarea,
+.slipage_card > div:nth-child(2) input {
+  padding: 10px;
+  background: var(--light);
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #5656564d;
+  font-weight: 600;
+  outline: none;
+  color: var(--dark);
+}
+.token form .form_tbox > div {
+  background: var(--light);
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid #5656564d;
+  padding: 0 10px;
+}
+.token form .form_tbox > div > input {
+  padding: 10px;
+  background-color: transparent !important;
+  outline: none;
+  color: var(--dark);
+  border: none;
+  width: 100%;
+}
+.token form .form_tbox > div img {
+  width: 20px;
+}
+.token form .fileinput,
+.profile .fileinput,
+.reply_container .fileinput {
+  background-color: var(--light);
+  padding: 10px;
+  border: 1px solid #5656564d;
+  border-radius: 10px;
+}
+
+.token form .fileinput > div,
+.profile .fileinput > div,
+.reply_container .fileinput > div {
+  border-radius: 10px;
+  border: 1px dashed #ffffff33;
+  background: var(--bg-light);
+}
+
+.token form div p,
+.reply_container label,
+.reply_container p {
+  opacity: 0.6;
+  margin-bottom: 0;
+  /* font-weight: 600; */
+}
+
+.token form .fileinput div div {
+  width: fit-content;
+  height: fit-content;
+}
+
+.token form .fileinput div div label,
+.reply_container .fileinput div div label {
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px 0px #ffffff66 inset;
+  background-color: var(--dark);
+  color: var(--light);
+  padding: 5px 10px;
+}
+
+.token form .fileinput div div input,
+.reply_container .fileinput div div input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.token form > button {
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.work > div > p,
+.work > div > div p:first-child {
+  opacity: 0.5;
+  font-size: 14;
+  font-weight: 400;
+}
+
+.work > div > div p:first-child {
+  text-wrap: nowrap;
+}
+
+.work > div > div p:last-child {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.profile img {
+  width: 80px;
+  height: 80;
+}
+
+.profile p {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+/* REPLY STYLE */
+/* slipage ========================== */
+.slipage_card > div:nth-child(2) input::-webkit-inner-spin-button,
+.slipage_card .inputfield input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.slipage_card h2 {
+  font-family: var(--font-tomy);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.slipage_card p {
+  /* font-size: 12px; */
+  opacity: 0.6;
+}
+
+.slipage_card .inputfield {
+  background: var(--light);
+  padding: 5px;
+  border-radius: 7px;
+  border: 1px solid #5656564d;
+}
+
+.slipage_card .inputfield input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--dark);
+  width: calc(100% - 50px);
+}
+.slipage_card .inputfield button {
+  border-radius: 5px;
+}
+.connectbtn > div > button,
+.connectbtn > div {
+  width: 100%;
+}
+
+/*================ manage mdoal css===================== */
+.manage {
+  background: #fdf4ea81;
+  backdrop-filter: blur(50px);
+  top: 0;
+  left: 0;
+}
+.manage > div {
+  background: var(--light);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 480px;
+}
+
+.manage div h1 {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 31.5px;
+  letter-spacing: -0.04em;
+  text-align: center;
+}
+
+.manage .imgdiv{
+  background: #fff;
+  padding: 2rem 0;
+  border-radius: 20px;
+}
+
+.manage .text_div {
+  margin-top: 5rem;
+}
+
+.manage div p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.96px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 575px) {
+  .token > div,
+  .work > div,
+  .profile > div,
+  .slipage_card,
+  .reply_container {
+    width: 95vw;
+  }
+
+  .manage > div {
+    width: 90%;
+  }
+  .manage > div img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 416px) {
+  .token > div,
+  .work > div,
+  .profile > div,
+  .slipage_card,
+  .reply_container {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .token form .fileinput > div,
+  .profile .fileinput > div,
+  .reply_container .fileinput > div {
+    flex-direction: column;
+  }
+}

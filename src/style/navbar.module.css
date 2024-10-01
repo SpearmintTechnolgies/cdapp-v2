@@ -1,0 +1,117 @@
+.navbar_parent nav {
+    background-color: var(--light);
+}
+
+.navbar_parent nav>div{
+    max-width: 1700px;
+
+}
+
+.navbar_parent nav a {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    color: var(--dark) !important;
+}
+
+.mode {
+    /* background-color: var(--main_color); */
+    border-radius: 10px;
+    border: 1px solid var(--main_color);
+}
+
+.mode button {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: var(--dark);
+}
+
+/* START NAVBAR TAB STYLE */
+ .navbar_tab {
+
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    background: #000000b8;
+    transition: 0.5s ease;
+}
+
+.navbar_tab>div {
+    width: 50%;
+    background: var(--light);
+    height: 100%;
+    padding: 1rem 1.5rem;
+}
+.navbar_tab .close_btn i{
+    color: var(--dark);
+}
+
+.navbar_tab ul a {
+    font-weight: 600;
+    padding-top: 0;
+    padding-bottom: 0.4rem;
+}
+
+.profile{
+    padding: .3rem ;
+    background: var(--bg-light);
+    border-radius: 10px;
+    
+}
+
+.profile img{
+    width: 35px;
+    height: 35px;
+}
+.profile>div p{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+}
+.profile>div span{
+    opacity: .5;
+    font-size: 12px;
+}
+
+
+.profile>div:last-child{
+    padding: 1rem;
+    top: 100%;
+    right: 0;
+    background: var(--bg-light);
+    border-radius: 20px;
+    display: none;
+}
+.profile:hover>div:last-child{
+    display: block;
+}
+.togglerbtn{
+    background: var(--main_color);
+}
+.togglerbtn span{
+    color: #fff;
+}
+
+/*START MEDIA*/
+@media (min-width:1900px) {
+    .navbar_parent nav {
+        margin: auto ;
+    }
+
+    
+}
+@media(max-width:575px){
+    .navbar_tab>div {
+        width: 65%;
+    }
+}
+
+@media(max-width:416px){
+    .navbar_tab>div {
+        width: 80%;
+    }
+}
