@@ -139,7 +139,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [projectId, projects?.[7], buyValue == "0" ? "0" : buyValue*1e18],
+    args: [projectId, projects?.[7], (((buyValue - (buyValue*0.01)) *1e18) || 0)],
   });
   
 
@@ -148,21 +148,21 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellTokens",
-    args: [projectId, projects?.[7], sellValue == "0" ? "0" : sellValue*1e18],
+    args: [projectId, projects?.[7], (sellValue > 0.01 ? sellValue - 0.01 : sellValue)*1e18],
   });
 
   const { data: getBuyFee , queryKey: getBuyFeeQueryKey } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyFee",
-    args: [ buyValue == "0" ? "0" : buyValue*1e18, projects?.[7]],
+    args: [ buyValue == "0" ? "0" : (((buyValue - (buyValue*0.01)) *1e18) || 0), projects?.[7]],
   });
 
   const { data: getSellFee , queryKey: getSellFeeQueryKey } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getSellFee",
-    args: [sellValue == "0" ? "0" : sellValue*1e18, projects?.[7]],
+    args: [sellValue == "0" ? "0" : (sellValue > 0.01 ? sellValue - 0.01 : sellValue)*1e18, projects?.[7]],
   });
 
 
@@ -202,7 +202,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
       address: POOL_ADDRESS,
       abi: TOKEN_COIN_ABI,
       functionName: "buyTokens",
-      args: [projectId, parseEther(buyValue.toString()),slippage*100, getTokensForAmount?.[0]],
+      args: [projectId, parseEther(((buyValue - (buyValue*0.01))).toString()),slippage*100, getTokensForAmount?.[0]],
       value:
         projects?.[7] === false
           ? parseEther(buyValue.toString()) + getBuyFee
@@ -243,7 +243,7 @@ const TradeContainer = ({ tokenData, getHolderDistribution, getTokenChartDetail,
       address: POOL_ADDRESS,
       abi: TOKEN_COIN_ABI,
       functionName: "sellTokens",
-      args: [projectId, parseFloat(formatEther(tokenBalance) * 1).toFixed(6) == sellValue ? tokenBalance : parseEther(sellValue?.toString()) , slippage*100 , getSellTokens?.[0] ],
+      args: [projectId, parseFloat(formatEther(tokenBalance) * 1).toFixed(6) == sellValue ? tokenBalance : parseEther((sellValue - 0.01)?.toString()) , slippage*100 , getSellTokens?.[0] ],
       value: 0,
     };
     setSellTxn(null);

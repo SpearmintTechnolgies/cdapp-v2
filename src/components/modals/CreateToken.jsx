@@ -202,14 +202,14 @@ export const CreateToken = ({ hide }) => {
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyFee",
-    args: [parseEther(buyValue.toString()), false],
+    args: [(((buyValue - (buyValue*0.01)) *1e18) || 0), false],
   });
 
   const { data: getTokensForAmount } = useReadContract({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [123456, false,parseEther(buyValue)],
+    args: [123456, false,(((buyValue - (buyValue*0.01)) *1e18) || 0)],
   });
 
   console.log(coinFee, buyValue);
@@ -219,8 +219,8 @@ export const CreateToken = ({ hide }) => {
       address: POOL_ADDRESS,
       abi: TOKEN_COIN_ABI,
       functionName: "createPool",
-      args: [_id, _name, _symbol, isToken, parseEther(buyValue.toString() || 0),500,getTokensForAmount?.[0]],
-      value: coinFee + parseEther(buyValue.toString() || 0) + (buyValue > 0 ? getBuyFee : 0),
+      args: [_id, _name, _symbol, isToken, (((buyValue - (buyValue*0.01)) *1e18) || 0),500,getTokensForAmount?.[0]],
+      value: coinFee + (((buyValue - (buyValue*0.01)) *1e18) || 0) + (buyValue > 0 ? getBuyFee : 0),
       // value: coinFee  
     };
     setTxn(null);
@@ -230,8 +230,8 @@ export const CreateToken = ({ hide }) => {
       setTxn(txn);
     } catch (e) {
       setIsloading(false);
-      // setError(e)
-      console.log(e);
+      setError(e)
+      // console.log(e);
     }
   };
   const {
