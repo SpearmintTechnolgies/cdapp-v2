@@ -220,7 +220,7 @@ export const CreateToken = ({ hide }) => {
       abi: TOKEN_COIN_ABI,
       functionName: "createPool",
       args: [_id, _name, _symbol, isToken, (buyValue*1e18 || 0),500,getTokensForAmount?.[0]],
-      value: parseFloat(coinFee).toString() + (buyValue*1e18 || 0) + (buyValue > 0 ? parseFloat(getBuyFee).toString() : 0),
+      value: parseFloat(coinFee) + parseFloat(buyValue*1e18 || 0) + parseFloat(buyValue > 0 ? getBuyFee : 0),
       // value: coinFee  
     };
     setTxn(null);
