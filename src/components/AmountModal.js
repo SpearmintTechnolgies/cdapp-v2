@@ -182,7 +182,7 @@ const AmountModal = ({
           }}>
             <div className="d-flex justify-content-between my-2  p-2 rounded" style={{background:'var(--main-light)'}}>
               <p className="text-dark mb-0"><span className="opacity-50">Balance</span> {parseFloat(formatEther(balance?.value)).toFixed(2)}</p>
-              <button className="btn1" onClick={() => setBuyValue(parseFloat(formatEther(balance?.value) - (formatEther(balance?.value)*0.02)).toFixed(2))}>Max</button>
+              <button className="btn1" onClick={() => setBuyValue(parseFloat(formatEther(balance?.value) - (formatEther(balance?.value)*0.025)).toFixed(2))}>Max</button>
             </div>
             <Typography className="label">Amount</Typography>
             <div className="d-flex bg-white px-2 rounded">
