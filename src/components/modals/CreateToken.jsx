@@ -281,7 +281,7 @@ export const CreateToken = ({ hide }) => {
               className="p"
               sx={{ color: "var(--dark)", mb: "0rem !important", textAlign: "end", opacity: "0.6", fontSize: "15px" }}
             >
-              Cost to deploy: {formatEther(coinFee || 0)?.toString()}{" "}
+              Cost to deploy: {formatEther(coinFee || 0)}{" "}
               {balance?.symbol}
             </Typography>
             <input type="text" placeholder="Name of Token" id="name"
