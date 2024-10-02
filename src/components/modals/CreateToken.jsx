@@ -212,7 +212,7 @@ export const CreateToken = ({ hide }) => {
     args: [123456, false,(buyValue*1e18 || 0)],
   });
 
-  console.log(coinFee, buyValue);
+  console.log(coinFee, parseFloat(buyValue*1e18 || 0), parseFloat(buyValue > 0 ? getBuyFee : 0));
   const writeAsync = async (_id, _name, _symbol, isToken) => {
     setError(false)
     const config = {
