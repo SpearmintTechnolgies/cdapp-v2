@@ -457,7 +457,7 @@ export const CreateToken = ({ hide }) => {
           </div>
         </form>
       </Box>
-      <AmountModal buyValue={buyValue} setBuyValue={setBuyValue} amountModal={amountModal} setAmountModal={setAmountModal} createCoin={createCoin} symbol={formik.values.code} handleOnchange={handleOnchange} />
+      {/* <AmountModal buyValue={buyValue} setBuyValue={setBuyValue} amountModal={amountModal} setAmountModal={setAmountModal} createCoin={createCoin} symbol={formik.values.code} handleOnchange={handleOnchange} /> */}
     </div>
   )
 }
