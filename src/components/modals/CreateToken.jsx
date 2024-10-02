@@ -219,8 +219,8 @@ export const CreateToken = ({ hide }) => {
       address: POOL_ADDRESS,
       abi: TOKEN_COIN_ABI,
       functionName: "createPool",
-      args: [_id, _name, _symbol, isToken, (buyValue*1e18 || 0),500,getTokensForAmount?.[0]],
-      value: parseFloat(coinFee) + parseFloat(buyValue*1e18 || 0) + parseFloat(buyValue > 0 ? getBuyFee : 0),
+      args: [_id, _name, _symbol, isToken, parseEther(buyValue.toString()),500,getTokensForAmount?.[0]],
+      value: coinFee + parseEther(buyValue.toString()) + (buyValue > 0 ? getBuyFee : 0),
       // value: coinFee  
     };
     setTxn(null);
