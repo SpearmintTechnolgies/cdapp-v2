@@ -48,7 +48,7 @@ const connectors = connectorsForWallets(
   },
   rpcUrls: {
      default: {
-      http: ["https://rpc.ankr.com/core/24617f4c38095b6300f258131791ce6ebb30a24b83f3af7a39df4cf4b7c3495a"],
+      http: [process.env.NEXT_PUBLIC_CORE_RPC],
     },
   },
   blockExplorers: {
