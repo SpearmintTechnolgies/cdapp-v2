@@ -65,7 +65,7 @@ const AmountModal = ({
     abi: TOKEN_COIN_ABI,
     address: POOL_ADDRESS,
     functionName: "getBuyTokens",
-    args: [123456, false,parseEther(buyValue)],
+    args: [123456, false,(buyValue*1e18 || 0)],
   });
 
 
