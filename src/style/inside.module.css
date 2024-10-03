@@ -71,7 +71,7 @@
 }
 
 .left_inside .token_data > div {
-  background-color: #ffffff48;
+  background-color: var(--body-color);
   padding: 5px;
   border-radius: 5px;
 }

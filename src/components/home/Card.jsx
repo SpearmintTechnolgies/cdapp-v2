@@ -68,13 +68,13 @@ export const Card = ({ data, dex, setPop }) => {
               <span className="d-flex gap-2">
                 {
                   data?.twitterLink != "" &&
-                  <a href={`https://${data?.twitterLink}`} target="_blank" className="social_link">
+                  <a href={`${data?.twitterLink}`} target="_blank" className="social_link">
                     <img src="/assets/icons/x.svg" width="20px" className="social_link" alt="" />
                   </a>
                 }
                 {
                   data?.telegramLink != "" &&
-                  <a href={`https://${data?.telegramLink}`} className="social_link" target="_blank">
+                  <a href={`${data?.telegramLink}`} className="social_link" target="_blank">
                     <img src="/assets/icons/telegram.svg" className="social_link" width="20px" alt="" />
                   </a>
                 }
@@ -89,7 +89,7 @@ export const Card = ({ data, dex, setPop }) => {
             </h3>
             {/* </Link> */}
             <p className="mb-0 opacity-75">
-              {data?.desc}
+              {data?.desc.length > 160 ? data.desc.slice(0, 120) + "..." : data.desc}
             </p>
           </div>
         </div>

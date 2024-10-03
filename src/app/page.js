@@ -28,41 +28,7 @@ const arr2 = [1, 2, 3, 4, 5, 6];
 const arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 
-var settings = {
-  dots: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  // initialSlide: 0,
-  dots: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        // infinite: true,
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // initialSlide: 2
-      }
-    }
-    // {
-    //   breakpoint: 480,
-    //   settings: {
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     initialSlide: 1
-    //   }
-    // }
-  ]
-};
+
 export default function Home() {
   const { address } = useAccount()
 
@@ -194,6 +160,41 @@ export default function Home() {
     });
   }, []);
 
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: listedCoins.length<3 ?listedCoins.length:3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    dots: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          // infinite: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // initialSlide: 2
+        }
+      }
+      // {
+      //   breakpoint: 480,
+      //   settings: {
+      //     slidesToShow: 1,
+      //     slidesToScroll: 1,
+      //     initialSlide: 1
+      //   }
+      // }
+    ]
+  };
 
 
   return (
@@ -203,7 +204,7 @@ export default function Home() {
         <Hero />
       </div>
       {
-        listedCoins.length > 0 &&
+        listedCoins.length > 0 && tab === "terminal"  &&
       <section className={styles.section2 + " px-lg-5 py-lg-5 px-sm-4 py-sm-4 px-2 py-4 my-3"}>
         <div className="d-flex justify-content-between">
           <h3 className="fs-6">Listed on Archerswap</h3>
@@ -215,9 +216,7 @@ export default function Home() {
         <div className={styles.slider + " slider-container position-relative"}>
           {console.warn("listed coins ",listedCoins)}
           <Slider {...settings}>
-            {tab === "terminal"
-              ? listedCoins?.map((e, i) => <Card data={e} dex={true} setPop={setPop} />)
-              : null}
+            {listedCoins?.map((e, i) => <Card data={e} dex={true} setPop={setPop} />)}
           </Slider>
         </div>
       </section>

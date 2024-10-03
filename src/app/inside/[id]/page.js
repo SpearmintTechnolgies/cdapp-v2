@@ -540,6 +540,12 @@ const page = () => {
     </div>
   }
 
+  const handleCopy = () => {
+    let target = document.querySelector("#ca").innerText;
+    // target is a text that want to copy onclick
+    navigator.clipboard.writeText(target)
+  };
+
   return (
     <>
       <Snackbar
@@ -663,6 +669,12 @@ const page = () => {
               <div className="d-flex gap-1">
                 <span>Rise </span>
                 <p>{rise}%</p>
+              </div>
+              <div className="d-flex gap-1">
+                <span>CA</span>
+                <p id="ca">0xaer434a...kji34 
+                  <button onClick={handleCopy} className="border-0 text-secondary bg-transparent"><i class="bi bi-copy"></i></button>
+                  </p>
               </div>
             </div>
             <div>
