@@ -21,6 +21,7 @@ import { Happend } from "../components/modals/Happend";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import { Loader } from "../components/common/Loader";
+import { Top_Corousel_Card } from "../components/home/Top_Corousel_Card";
 // import { Profile } from "@/components/modals/Profile";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -164,7 +165,7 @@ export default function Home() {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: listedCoins.length<3 ?listedCoins.length:3,
+    slidesToShow: listedCoins.length < 3 ? listedCoins.length : 3,
     slidesToScroll: 3,
     initialSlide: 0,
     dots: false,
@@ -196,30 +197,60 @@ export default function Home() {
     ]
   };
 
+  const settings1 = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 1000,
+    cssEase: "linear"
+  };
+
 
   return (
     <div className="home_bg">
       {/* <Navbar /> */}
+      <div className={styles.tc + " py-3"}>
+        {/* <div className={styles.track}>
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+
+        </div> */}
+        <Slider {...settings1}>
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+          <Top_Corousel_Card />
+        </Slider>
+      </div>
       <div>
         <Hero />
       </div>
       {
-        listedCoins.length > 0 && tab === "terminal"  &&
-      <section className={styles.section2 + " px-lg-5 py-lg-5 px-sm-4 py-sm-4 px-2 py-4 my-3"}>
-        <div className="d-flex justify-content-between">
-          <h3 className="fs-6">Listed on Archerswap</h3>
-          {/* <div>
+        listedCoins.length > 0 && tab === "terminal" &&
+        <section className={styles.section2 + " px-lg-5 py-lg-5 px-sm-4 py-sm-4 px-2 py-4 my-3"}>
+          <div className="d-flex justify-content-between">
+            <h3 className="fs-6">Listed on Archerswap</h3>
+            {/* <div>
             <button type="button" data-bs-target="#carouselExample" data-bs-slide="prev"><i class="bi bi-chevron-left"></i></button>
             <button type="button" data-bs-target="#carouselExample" data-bs-slide="next"><i class="bi bi-chevron-right"></i></button>
           </div> */}
-        </div>
-        <div className={styles.slider + " slider-container position-relative"}>
-          {console.warn("listed coins ",listedCoins)}
-          <Slider {...settings}>
-            {listedCoins?.map((e, i) => <Card data={e} dex={true} setPop={setPop} />)}
-          </Slider>
-        </div>
-      </section>
+          </div>
+          <div className={styles.slider + " slider-container position-relative"}>
+            {console.warn("listed coins ", listedCoins)}
+            <Slider {...settings}>
+              {listedCoins?.map((e, i) => <Card data={e} dex={true} setPop={setPop} />)}
+            </Slider>
+          </div>
+        </section>
       }
       <section className={styles.section2 + " p-lg-4 py-4 px-md-2 px-4 p-xl-5"}>
         <div
@@ -231,7 +262,7 @@ export default function Home() {
           <div>
             <button
               className={tab === "following" ? "activefilter" : ""}
-              onClick={() => { setTab("following")}}
+              onClick={() => { setTab("following") }}
             >
               Following
             </button>
@@ -243,7 +274,7 @@ export default function Home() {
             </button>
             <button
               className={tab === "for_you" ? "activefilter" : ""}
-              onClick={() => { setTab("for_you")}}
+              onClick={() => { setTab("for_you") }}
             >
               For You
             </button>

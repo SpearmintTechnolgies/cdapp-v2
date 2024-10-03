@@ -88,6 +88,16 @@ export const Hero = () => {
                         }
                         <button className='btn2 px-4 py-2' onClick={() => setModal("work")}>How it works?</button>
                     </div>
+                    <div className={Style.bottomdiv_parent}>
+                        <div className="d-flex justify-content-between align-items-center px-3 py-2">
+                            <div className="d-flex gap-3 align-items-center">
+                                <img src="/assets/white-logo.svg" alt="" />
+                                <p className="mb-0 text-white fw-semibold" style={{fontSize:"14px"}}>Featured</p>
+                            </div>
+                            <div>
+                                <Link href="#" className="text-decoration-none text-white fw-semibold" style={{fontSize:"14px"}}>Your’s Here <img src="/assets/icons/right-top-arrow.svg" alt="" /></Link>
+                            </div>
+                        </div>
                     <Link href={`/inside/${crownData?.coinsData?._id}`} className="text-decoration-none" style={{ color: "var(--dark)" }}>
                         <div className={Style.bottomdiv + ' d-flex flex-column align-items-sm-center align-items-lg-stretch align-items-xl-center flex-sm-row flex-lg-column flex-xl-row flex-lg-column flex-xl-row justify-content-between gap-md-4 gap-2'}>
                             <div className='d-flex gap-2 gap-xl-4'>
@@ -136,6 +146,7 @@ export const Hero = () => {
                             </div>
                         </div>
                     </Link >
+                    </div>
                 </div>
             </div >
             {

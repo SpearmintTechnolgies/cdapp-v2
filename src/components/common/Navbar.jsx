@@ -33,7 +33,7 @@ export const Navbar = () => {
         root.style.setProperty('--modal-bg', '#000000E0');
         root.style.setProperty('--modal-card-bg', '#191919');
         root.style.setProperty('--body-color', '#000');
-        root.style.setProperty('--home-bg', '#5D5D5D52');
+        root.style.setProperty('--home-bg', '#1e1e1e');
         setMode(true)
     }
     const light = () => {
@@ -46,7 +46,7 @@ export const Navbar = () => {
         root.style.setProperty('--modal-bg', '#FDF4EAE0');
         root.style.setProperty('--modal-card-bg', '#e5e1dc');
         root.style.setProperty('--body-color', '#EDA5501F');
-        root.style.setProperty('--home-bg', '#EDA5501F');
+        root.style.setProperty('--home-bg', '#fef4eb');
         setMode(false)
     }
 
@@ -114,7 +114,7 @@ export const Navbar = () => {
         <>
             <div className={Styles.navbar_parent} >
                 {/* show on desktop & larg viewport */}
-                <nav className="navbar navbar-expand-lg " style={{ background: path !== "/" ? "transparent" : "var(--light)" }}>
+                <nav className="navbar navbar-expand-lg " style={{ background: "transparent" }}>
                     <div className="container-fluid">
                         <Link className="navbar-brand" target="_self" href="/"><img src={darkMode ? "/assets/logo-dark.svg" : "/assets/logo.svg"} alt="Logo" /></Link>
 

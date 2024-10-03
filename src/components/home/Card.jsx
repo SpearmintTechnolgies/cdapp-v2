@@ -161,6 +161,20 @@ export const Card = ({ data, dex, setPop }) => {
             <p className="mb-0 text-center">{commentData?.length}</p>
           </div>
         </div>
+        <div className="mb-4">
+          <div className="d-flex justify-content-between align-items-center ">
+            <p className="mb-0" style={{fontSize:"14px"}}>Market cap</p>
+            <p className="mb-0 fw-semibold" style={{fontSize:"14px"}}>${data?.marketValue > 0
+                  ? formatNumber(parseFloat(data?.marketValue).toFixed(2))
+                  : 0}</p>
+          </div>
+          <input
+            id="input_curve"
+            type="range"
+            style={{ background: `linear-gradient(to right, #F2890C 50%, var(--home-bg) 50%` }}
+            className="curve-slider"
+          />
+        </div>
         <div
           className={
             style.thirdrow + " d-flex gap-2 justify-content-between flex-wrap"
