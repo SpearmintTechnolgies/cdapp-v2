@@ -12,10 +12,10 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 
 
-const ReplyMessage = ({ data, index, mainReplyId, getReplyComments }) => {
+const ReplyMessage = ({ data, index, mainReplyId, getReplyComments,getComments}) => {
   const { id: projectId } = useParams()
   const { isConnected } = useAccount()
-  const { getComments } = useContext(ContractContext)
+
   const [loading, setLoading] = useState(false);
   const [likes, setLikes] = useState([]);
   const [likeActive, setActiveLike] = useState(false)
@@ -33,8 +33,8 @@ const ReplyMessage = ({ data, index, mainReplyId, getReplyComments }) => {
       const response = await axios.delete(`${API_URL}/delete/comment/${data?._id}`);
 
       if (response.status === 200) {
-        getComments(projectId)
         getReplyComments()
+        getComments()
         setLoading(false);
       }
     } catch (error) {

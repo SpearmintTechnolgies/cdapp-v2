@@ -34,8 +34,8 @@ const page = () => {
   // return rout.push("/")
   const { id: projectId } = useParams();
   const [showChart, setShowChart] = useState(false);
-  const { crownData, commentData, getComments } = useContext(ContractContext);
-
+  const { crownData } = useContext(ContractContext);
+  const [commentData, setCommentData] = useState([]);
   const [modal, setModal] = useState(null);
   const [sell, setSell] = useState(false);
   const [tokenChartData, setTokenChartData] = useState({});
@@ -67,15 +67,34 @@ const page = () => {
   const hide = () => {
     setModal(null);
   };
-
+  const getComments = async () => {
+    await axios({
+      method: "GET",
+      url: `${API_URL}/get/comments/${projectId}`,
+    })
+      .then((_data) => {
+        setCommentData([]);
+        if(_data.data.data){
+          const reversedArray = _data.data.data.reverse();
+          setCommentData(reversedArray);
+          // getCoin()
+          // getUserLikes()
+        }
+    
+      })
+      .catch((err) => {
+        //  throw err
+        console.log(err);
+      });
+  };
   useEffect(() => {
     if (projectId) {
-      setInterval(() => {
-        getComments(projectId);
+      // setInterval(() => {
+        getComments();
         getTokenDetail();
         getTokenChartDetail();
 
-      }, 3000);
+      // }, 3000);
     }
   }, [projectId]);
   const getTokenChartDetail = async () => {
@@ -256,7 +275,7 @@ const page = () => {
     args: [projectId],
   });
 
-  console.log("projects", projects);
+  // console.log("projects", projects);
 
 
   // const { data: getTokensForAmount } = useReadContract({
@@ -330,7 +349,7 @@ const page = () => {
   useEffect(() => {
     if (tokenChartData) {
       if (tokenChartData.length > 0) {
-        console.log(tokenChartData);
+        // console.log(tokenChartData);
 
         let currentPrice = tokenChartData[tokenChartData.length - 1].close;
         let _initialPrice = tokenChartData[0].open;
@@ -457,7 +476,7 @@ const page = () => {
         setImage("")
         setLoading(false);
         setShowSnackbar(true);
-        getComments(projectId);
+        getComments();
         setTimeout(() => {
           setShowSnackbar(false);
         }, 2000);
@@ -468,7 +487,7 @@ const page = () => {
       console.log(error);
     }
   };
-  console.log(trades);
+  // console.log(trades);
 
   // Initialize the highcharts-more module
   // HighchartsMore(Highcharts);
@@ -540,11 +559,11 @@ const page = () => {
     </div>
   }
 
-  const handleCopy = () => {
-    let target = document.querySelector("#ca").innerText;
-    // target is a text that want to copy onclick
-    navigator.clipboard.writeText(target)
+  const handleCopy = (address) => {
+    navigator.clipboard.writeText(address)
   };
+
+
 
   return (
     <>
@@ -672,8 +691,10 @@ const page = () => {
               </div>
               <div className="d-flex gap-1">
                 <span>CA</span>
-                <p id="ca">0xaer434a...kji34 
-                  <button onClick={handleCopy} className="border-0 text-secondary bg-transparent"><i class="bi bi-copy"></i></button>
+                <p id="ca">{`${tokenData?.address.slice(0, 6)}...${tokenData?.address.slice(
+                    -4
+                  )}`}
+                  <button onClick={() => handleCopy(tokenData?.address)} className="border-0 text-secondary bg-transparent"><i class="bi bi-copy"></i></button>
                   </p>
               </div>
             </div>
@@ -926,14 +947,14 @@ const page = () => {
 
             <div className="mt-4">
               {commentData &&
-                commentData?.map((e, i) => <Message data={e} key={i} />)}
+                commentData?.map((e, i) => <Message data={e} key={i} getComments={getComments}/>)}
             </div>
           </div>
 
 
         </div>
       </div>
-      {modal === "reply" ? <Reply close={hide} /> : null}
+      {modal === "reply" ? <Reply close={hide}/> : null}
       {modal === "slipage" ? <Slipage close={hide} /> : null}
     </>
   );

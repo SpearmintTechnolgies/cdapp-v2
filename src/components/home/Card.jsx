@@ -1,11 +1,13 @@
 import { useReadContract } from "wagmi";
 import style from "../../app/page.module.css";
 import Link from "next/link";
-import { POOL_ADDRESS } from "@/src/Config";
+import { API_URL, POOL_ADDRESS } from "@/src/Config";
 import TOKEN_COIN_ABI from "../../Config/TOKEN_COIN_ABI.json";
 import { formatEther } from "viem";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 export const Card = ({ data, dex, setPop }) => {
@@ -16,7 +18,50 @@ export const Card = ({ data, dex, setPop }) => {
     functionName: "getMarketCap",
     args: [data?._id],
   });
+  const [commentData, setCommentData] = useState([]);
+  const [user, setUser] = useState([]);
+  const getComments = async () => {
+    await axios({
+      method: "GET",
+      url: `${API_URL}/get/comments/${data?._id}`,
+    })
+      .then((_data) => {
+        setCommentData([]);
+        if(_data.data.data){
+          const reversedArray = _data.data.data.reverse();
+          setCommentData(reversedArray);
+          // getCoin()
+          // getUserLikes()
+        }
+    
+      })
+      .catch((err) => {
+        //  throw err
+        console.log(err);
+      });
+  };
 
+  
+  const getUser = async () => {
+    await axios({
+      method: "GET",
+      url: `${API_URL}/get/single/user/${data?.createdBy}`,
+    })
+      .then((_data) => {
+       setUser(_data.data.user)
+    
+      })
+      .catch((err) => {
+        //  throw err
+        console.log(err);
+      });
+  };
+  useEffect(()=>{
+    getComments()
+  },[data?._id])
+  useEffect(()=>{
+    getUser()
+  },[data?.createdBy])
   function formatNumber(num) {
     if (num >= 1000000000000) {
       // For trillions
@@ -113,7 +158,7 @@ export const Card = ({ data, dex, setPop }) => {
           </div>
           <div>
             <span>Opinions</span>
-            <p className="mb-0 text-center">{data?.commentData?.length}</p>
+            <p className="mb-0 text-center">{commentData?.length}</p>
           </div>
         </div>
         <div
@@ -126,17 +171,17 @@ export const Card = ({ data, dex, setPop }) => {
             <div className="d-flex gap-1">
               <img src="/assets/demo2-hero.png" alt="" />
               <p className="fw-bold">
-                {/* <Link
-                  href="/profile/userid"
+                <Link
+                  href={`/profile/${user?._id}`}
                   className="text-decoration-none"
                   style={{ color: "var(--dark)" }}
-                > */}
-                {data?.username?.length > 8
-                  ? `${data?.username.slice(0, 4)}...${data?.username.slice(
+                >
+                {user?.username?.length > 8
+                  ? `${user?.username.slice(0, 4)}...${user?.username.slice(
                     -4
                   )}`
-                  : data?.username}
-                {/* </Link> */}
+                  : user?.username}
+                </Link>
               </p>
             </div>
           </div>

@@ -12,10 +12,9 @@ import { API_URL } from "@/src/Config";
 import { Box, Typography } from "@mui/material";
 import ReplyMessage from "./ReplyMessage";
 
-const Message = ({ data, key }) => {
+const Message = ({ data, key,getComments }) => {
   const { id: projectId } = useParams();
   const { isConnected } = useAccount();
-  const { getComments, commentData } = useContext(ContractContext);
   const [loading, setLoading] = useState(false);
   const [replyComment, setReplyComment] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -37,7 +36,7 @@ const Message = ({ data, key }) => {
       );
 
       if (response.status === 200) {
-        getComments(projectId);
+        getComments();
         setLoading(false);
       }
     } catch (error) {
@@ -206,6 +205,7 @@ const Message = ({ data, key }) => {
             index={i}
             mainReplyId={data?._id}
             getReplyComments={getReplyComments}
+            getComments={getComments}
           />
         ))}
       {open ? (

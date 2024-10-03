@@ -457,7 +457,7 @@ const page = () => {
                 </Typography>
               ) : (
                 followers?.map((e, i) => (
-                  <RightCard key={i} data={e} user={e?.followerDetails} />
+                  <RightCard key={i} data={e}  />
                 ))
               )}
             </div>

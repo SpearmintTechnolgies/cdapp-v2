@@ -40,7 +40,29 @@ export const LeftCard = ({ data }) => {
   );
 };
 
-export const RightCard = ({ data, user }) => {
+export const RightCard = ({ data}) => {
+  console.log(data);
+  
+  const [user, setUser] = useState({});
+  const getUser = async () => {
+    try {
+      const config = {
+        headers: {
+          "x-access-token": localStorage.getItem("access_token"),
+        },
+      };
+      const res = await axios.get(`${API_URL}/get/single/user/${data?.followerId}`, config);
+      if (res.status === 200) {
+        setUser(res.data.user);
+        // localStorage.setItem("username", res.data.user.username);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(()=>{
+    getUser()
+  },[data?.followerId])
   const [followers, setFollowers] = useState([]);
   const getFollowers = async () => {
     try {

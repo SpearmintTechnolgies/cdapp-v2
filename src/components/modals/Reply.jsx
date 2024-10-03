@@ -88,7 +88,7 @@ const Reply = ({ close, getReplyComments, commentId }) => {
         setLoading(false);
         getReplyComments();
         close();
-        // getComments(projectId)
+   
         formik.resetForm();
       }
     } catch (error) {

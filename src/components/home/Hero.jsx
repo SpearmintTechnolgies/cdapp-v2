@@ -1,5 +1,5 @@
 "use client"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Style from "../../app/page.module.css"
 import { CreateToken } from "../modals/CreateToken"
 import { Work } from "../modals/Work";
@@ -7,11 +7,37 @@ import Link from "next/link"
 import { ContractContext } from "@/src/Context/ContractContext"
 import { useAccount } from "wagmi";
 import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
+import axios from "axios";
+import { API_URL } from "@/src/Config";
 
 export const Hero = () => {
     const { openConnectModal} = useConnectModal()
     const [modal, setModal] = useState(null)
     const { crownData } = useContext(ContractContext);
+    const [commentData, setCommentData] = useState([]);
+    const getComments = async () => {
+      await axios({
+        method: "GET",
+        url: `${API_URL}/get/comments/${crownData?.coinsData?._id}`,
+      })
+        .then((_data) => {
+          setCommentData([]);
+          if(_data.data.data){
+            const reversedArray = _data.data.data.reverse();
+            setCommentData(reversedArray);
+            // getCoin()
+            // getUserLikes()
+          }
+      
+        })
+        .catch((err) => {
+          //  throw err
+          console.log(err);
+        });
+    };
+    useEffect(()=>{
+      getComments()
+    },[crownData?.coinsData?._id])
     const hide = () => {
         setModal(null)
     }
@@ -105,7 +131,7 @@ export const Hero = () => {
                                 </div>
                                 <div className="d-flex flex-column align-items-center gap-2">
                                     <span>Opinions</span>
-                                    <p className="mb-0 text-center">{crownData?.comments}</p>
+                                    <p className="mb-0 text-center">{commentData?.length}</p>
                                 </div>
                             </div>
                         </div>
