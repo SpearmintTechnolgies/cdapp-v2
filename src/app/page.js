@@ -205,7 +205,64 @@ export default function Home() {
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 1000,
-    cssEase: "linear"
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1199,
+        settings: {
+          slidesToShow: 2.5
+          
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2
+         
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 1.85
+      
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1.55
+      
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1.35
+      
+        }
+      },{
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1.1
+      
+        }
+      },
+      {
+        breakpoint: 450,
+        settings: {
+          slidesToShow: 1
+      
+        }
+      },
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 0.8
+      
+        }
+      }
+    ]
   };
 
 

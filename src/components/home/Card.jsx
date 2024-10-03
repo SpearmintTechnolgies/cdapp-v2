@@ -134,7 +134,7 @@ export const Card = ({ data, dex, setPop }) => {
             </h3>
             {/* </Link> */}
             <p className="mb-0 opacity-75">
-              {data?.desc.length > 160 ? data.desc.slice(0, 120) + "..." : data.desc}
+              {data?.desc.length > 160 ? data.desc.slice(0, 100) + "..." : data.desc}
             </p>
           </div>
         </div>
@@ -146,22 +146,22 @@ export const Card = ({ data, dex, setPop }) => {
               <span>Symbol</span>
               <p className="mb-0 text-center">{data?.symbol}</p>
             </div>
-            {!dex ? <div>
+            {/* {!dex ? <div>
               <span>Market cap</span>
               <p className="mb-0 text-center">
-                {/* $ {getMarketCap ? formatEther(getMarketCap) : 0} */}${" "}
+                {/* $ {getMarketCap ? formatEther(getMarketCap) : 0} }${" "}
                 {data?.marketValue > 0
                   ? formatNumber(parseFloat(data?.marketValue).toFixed(2))
                   : 0}
               </p>
-            </div> : null}
+            </div> : null} */}
           </div>
           <div>
             <span>Opinions</span>
             <p className="mb-0 text-center">{commentData?.length}</p>
           </div>
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <div className="d-flex justify-content-between align-items-center ">
             <p className="mb-0" style={{fontSize:"14px"}}>Market cap</p>
             <p className="mb-0 fw-semibold" style={{fontSize:"14px"}}>${data?.marketValue > 0
@@ -174,7 +174,7 @@ export const Card = ({ data, dex, setPop }) => {
             style={{ background: `linear-gradient(to right, #F2890C 50%, var(--home-bg) 50%` }}
             className="curve-slider"
           />
-        </div>
+        </div> */}
         <div
           className={
             style.thirdrow + " d-flex gap-2 justify-content-between flex-wrap"

@@ -34,6 +34,8 @@
   padding: 10px 20px;
   font-family: var(--font-tomy);
   width: fit-content;
+  min-width: fit-content;
+  
 }
 
 .tc_card p {
@@ -377,7 +379,15 @@
   height: 65px;
   border-radius: 20px;
 }
-
+.card .row1 > div:last-child {
+  width: 78%;
+}
+.card .row1 > div:last-child h3{
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .card .row1 h3 {
   font-size: 1.5rem;
   font-weight: 600;
