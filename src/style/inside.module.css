@@ -48,10 +48,10 @@
   font-size: 20px;
 }
 
-.social_t{
+/* .social_t{
   background-color: var(--body-color);
   color: var(--main_color);
-}
+} */
 .social_i:hover, .social_x:hover,
 .social_t:hover{
   background-color: var(--main_color);

@@ -9,6 +9,7 @@ import { useAccount } from "wagmi";
 import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
 import axios from "axios";
 import { API_URL } from "@/src/Config";
+import { New_token_card } from "./New_token_card";
 
 export const Hero = () => {
     const { openConnectModal} = useConnectModal()
@@ -65,13 +66,24 @@ export const Hero = () => {
 
     return (
         <>
-            <div className={Style.hero + " d-flex flex-column flex-lg-row align-items-center align-items-xxl-start container gap-5 py-5"} >
-                <div className={Style.imgdiv + " col-lg-5"}>
-                    {/* <img src="/assets/lending-hero.svg" width="100%" alt="" /> */}
+            <div className={Style.hero + " d-flex flex-column flex-lg-row align-items-center align-items-lg-end align-items-xxl-start container gap-5 py-5"} >
+                {/* <div className={Style.imgdiv + " col-lg-5"}>
                     <div className="position-absolute ">
                         <img className="position-absolute" src="/assets/Coin1.png" alt="" />
                         <img className="position-absolute" src="/assets/Coin2.png" alt="" />
                         <img className="position-absolute" src="/assets/Coin3.png" alt="" />
+                    </div>
+                </div> */}
+                <div className={Style.left+" col-lg-5"}>
+                    <div className={Style.new_token}>
+                        <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center gap-2">
+                                <img src="/assets/new.svg" alt="" />
+                                <p className="mb-0">New Token</p>
+                            </div>
+                            <p className="mb-0">Just now</p>
+                        </div>
+                        <New_token_card/>
                     </div>
                 </div>
                 <div className={Style.hero_right}>

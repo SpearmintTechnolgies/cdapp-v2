@@ -22,6 +22,7 @@ import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import { Loader } from "../components/common/Loader";
 import { Top_Corousel_Card } from "../components/home/Top_Corousel_Card";
+import { Pagination } from "../components/home/Pagination";
 // import { Profile } from "@/components/modals/Profile";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -37,6 +38,7 @@ export default function Home() {
 
   const [sortOption, setSortOption] = useState("1");
   const [pop, setPop] = useState("")
+  const [c_page, setPage] = useState([])
 
   const handleSorting = (value) => {
     // console.warn("sect value is this " + value)
@@ -200,13 +202,27 @@ export default function Home() {
   const settings1 = {
     dots: false,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 1000,
+    speed: 4000,
+    autoplaySpeed: 100,
     cssEase: "linear",
     responsive: [
+      {
+        breakpoint: 1499,
+        settings: {
+          slidesToShow: 3.3
+          
+        }
+      },
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 3
+          
+        }
+      },
       {
         breakpoint: 1199,
         settings: {
@@ -416,6 +432,7 @@ export default function Home() {
             )) : null
           }
         </div>
+        <Pagination stor={filteredCoins} page={setPage}/>
       </section>
       <Footer />
       {/* <Profile/> */}

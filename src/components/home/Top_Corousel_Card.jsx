@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { formatEther } from 'viem'
 
 
-export const Top_Corousel_Card = ({data}) => {
+export const Top_Corousel_Card = ({ data }) => {
   const [tokenData, setTokenData] = useState({});
   const getTokenDetail = async () => {
     await axios({
@@ -25,32 +25,34 @@ export const Top_Corousel_Card = ({data}) => {
         console.log(err);
       });
   };
-  useEffect(()=>{
+  useEffect(() => {
     getTokenDetail()
-  },[data?.project])
+  }, [data?.project])
 
   return (
-    <div key={data?._id} className={style.tc_card+" d-flex align-items-center gap-2"}>
+    <div className='w-100 px-2'>
+      <div key={data?._id} className={style.tc_card + " d-flex align-items-center gap-2 w-100"}>
         <div className={`${style.left} d-flex align-items-center gap-2`}>
           <p>{`${data?.user?.slice(0, 6)}...${data?.user?.slice(
-                    -4
-                  )}`}</p>
+            -4
+          )}`}</p>
           <p className={style.sold}>Sold</p>
           <p>{parseFloat(formatEther(data?.amount?.toString())).toFixed(3)} Core of</p>
         </div>
         <div className={`${style.right} d-flex align-items-center gap-2`}>
-            <Typography
-                  component={"img"}
-                  src={tokenData?.image}
-                  alt=""
-                  // borderRadius="12px"
-                  // width={"40px"}
-                  // height={"40px"}
-                />
-          <p>{tokenData?.name?.length > 8?`${tokenData?.name?.slice(0, 6)}...${tokenData?.name?.slice(
-                    -4
-                  )}`:tokenData?.name}</p>
+          <Typography
+            component={"img"}
+            src={tokenData?.image}
+            alt=""
+          // borderRadius="12px"
+          // width={"40px"}
+          // height={"40px"}
+          />
+          <p>{tokenData?.name?.length > 8 ? `${tokenData?.name?.slice(0, 6)}...${tokenData?.name?.slice(
+            -4
+          )}` : tokenData?.name}</p>
         </div>
+      </div>
     </div>
   )
 }
