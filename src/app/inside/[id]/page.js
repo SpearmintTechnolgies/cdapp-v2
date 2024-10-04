@@ -739,7 +739,7 @@ const page = () => {
               </div>
               <div className="d-flex gap-1">
             
-                {tokenData?.verified?"Verified":  <button onClick={verifyTokenContract} className="border-0 text-secondary bg-transparent"><i title="verify"  class="bi bi-link"></i></button>}
+                {/* {tokenData?.verified?"Verified":  <button onClick={verifyTokenContract} className="border-0 text-secondary ÷bg-transparent"><i title="verify"  class="bi bi-link"></i></button>} */}
                 
               </div>
             </div>
