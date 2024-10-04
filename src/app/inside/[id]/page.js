@@ -42,6 +42,8 @@ const page = () => {
   const [tokenData, setTokenData] = useState({});
   const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [verifySuccess, setVerifySuccess] = useState(null);
+  const [verifyErr, setVerifyErr] = useState(null);
   const [trades, setTrades] = useState([]);
   const getHolderDistribution = async () => {
     await axios({
@@ -553,17 +555,55 @@ const page = () => {
       return num.toString();
     }
   }
-  if(!user.username){
-    return <div className="d-flex justify-content-center align-items-center " style={{height:"75vh"}}>
-      <Loader/>
-    </div>
-  }
+  // if(!user.username){
+  //   return <div className="d-flex justify-content-center align-items-center " style={{height:"75vh"}}>
+  //     <Loader/>
+  //   </div>
+  // }
 
   const handleCopy = (address) => {
     navigator.clipboard.writeText(address)
   };
 
 
+  const verifyTokenContract = async () => {
+    // setLoading(true);
+    try {
+      const config = {
+        headers: {
+          "x-access-token": localStorage.getItem("access_token"),
+        },
+      };
+      const res = await axios.post(
+        `${API_URL}/verify/contract`,
+        {
+          contractaddress: tokenData?.address,
+          tokenName: tokenData?.name,
+          tokenSymbol: tokenData?.symbol,
+        },
+        config
+      );
+    
+      if (res.status === 200) {
+       getTokenDetail()
+       setVerifySuccess("Verified Successfully")
+       setShowSnackbar(true)
+       setTimeout(() => {
+        setShowSnackbar(false)
+        setVerifySuccess(null)
+       }, 5000);
+      }
+    } catch (error) {
+      setShowSnackbar(true)
+      setVerifyErr(error.response.data.message)
+      setTimeout(() => {
+        setShowSnackbar(false)
+        setVerifyErr(null)
+       }, 5000);
+     
+   
+    }
+  };
 
   return (
     <>
@@ -573,23 +613,23 @@ const page = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         sx={{
           "& .MuiSvgIcon-root": {
-            color: "green",
+            color: verifyErr?"red":"green",
           },
         }}
       >
         <Alert
-          severity={"success"}
+          severity={verifyErr?"error":"success"}
           style={{
             backgroundColor: "#131722",
-            color: "green",
+            color: verifyErr?"red":"green",
             fontSize: "15px",
-            fontFamily: "latoBold",
+            // fontFamily: "latoBold",
             display: "flex",
             alignItems: "center",
             fontWeight: "600",
           }}
         >
-          Comment submitted Successfully.
+          {verifyErr?verifyErr:verifySuccess?verifySuccess:"Comment submitted Successfully."}
         </Alert>
       </Snackbar>
       <div
@@ -691,11 +731,16 @@ const page = () => {
               </div>
               <div className="d-flex gap-1">
                 <span>CA</span>
-                <p id="ca">{`${tokenData?.address.slice(0, 6)}...${tokenData?.address.slice(
+                <p id="ca">{`${tokenData?.address?.slice(0, 6)}...${tokenData?.address?.slice(
                     -4
                   )}`}
                   <button onClick={() => handleCopy(tokenData?.address)} className="border-0 text-secondary bg-transparent"><i class="bi bi-copy"></i></button>
                   </p>
+              </div>
+              <div className="d-flex gap-1">
+            
+                {tokenData?.verified?"Verified":  <button onClick={verifyTokenContract} className="border-0 text-secondary bg-transparent"><i title="verify"  class="bi bi-link"></i></button>}
+                
               </div>
             </div>
             <div>

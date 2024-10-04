@@ -1,16 +1,55 @@
 import style from '@/src/app/page.module.css'
+import { API_URL } from '@/src/Config';
+import { Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { formatEther } from 'viem'
 
-export const Top_Corousel_Card = () => {
+
+export const Top_Corousel_Card = ({data}) => {
+  const [tokenData, setTokenData] = useState({});
+  const getTokenDetail = async () => {
+    await axios({
+      method: "GET",
+      url: `${API_URL}/token-coin/${data?.project}`,
+      headers: {
+        "Accept-Encoding": "application/json",
+        // 'Origin' : process.env.ORIGIN
+      },
+    })
+      .then((_data) => {
+        setTokenData(_data.data.data);
+      })
+      .catch((err) => {
+        //  throw err
+        console.log(err);
+      });
+  };
+  useEffect(()=>{
+    getTokenDetail()
+  },[data?.project])
+
   return (
-    <div className={style.tc_card+" d-flex align-items-center gap-2"}>
+    <div key={data?._id} className={style.tc_card+" d-flex align-items-center gap-2"}>
         <div className={`${style.left} d-flex align-items-center gap-2`}>
-          <p>0x16...a81119</p>
+          <p>{`${data?.user?.slice(0, 6)}...${data?.user?.slice(
+                    -4
+                  )}`}</p>
           <p className={style.sold}>Sold</p>
-          <p>0.12 Core of</p>
+          <p>{parseFloat(formatEther(data?.amount?.toString())).toFixed(3)} Core of</p>
         </div>
         <div className={`${style.right} d-flex align-items-center gap-2`}>
-          <img src="/assets/demo1-hero.png" alt="img" />
-          <p>FEED EVERY CATS</p>
+            <Typography
+                  component={"img"}
+                  src={tokenData?.image}
+                  alt=""
+                  // borderRadius="12px"
+                  // width={"40px"}
+                  // height={"40px"}
+                />
+          <p>{tokenData?.name?.length > 8?`${tokenData?.name?.slice(0, 6)}...${tokenData?.name?.slice(
+                    -4
+                  )}`:tokenData?.name}</p>
         </div>
     </div>
   )

@@ -265,7 +265,24 @@ export default function Home() {
     ]
   };
 
-
+  const [latestTrade, setLatestTrade] = useState([]);
+  const getTrades = async () => {
+    await axios({
+      method: "GET",
+      url: `${API_URL}/get/latest/trades`,
+    })
+      .then((_data) => {
+        setLatestTrade(_data.data.trades);
+    
+      })
+      .catch((err) => {
+        //  throw err
+        console.log(err);
+      });
+  };
+  useEffect(()=>{
+    getTrades()
+  },[])
   return (
     <div className="home_bg">
       {/* <Navbar /> */}
@@ -280,12 +297,11 @@ export default function Home() {
 
         </div> */}
         <Slider {...settings1}>
-          <Top_Corousel_Card />
-          <Top_Corousel_Card />
-          <Top_Corousel_Card />
-          <Top_Corousel_Card />
-          <Top_Corousel_Card />
-          <Top_Corousel_Card />
+          {latestTrade?.map((data,i)=>(
+            <Top_Corousel_Card key={i} data={data}/>
+          ))
+           }
+       
         </Slider>
       </div>
       <div>

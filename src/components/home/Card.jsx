@@ -134,7 +134,7 @@ export const Card = ({ data, dex, setPop }) => {
             </h3>
             {/* </Link> */}
             <p className="mb-0 opacity-75">
-              {data?.desc.length > 160 ? data.desc.slice(0, 100) + "..." : data.desc}
+              {data?.desc?.length > 160 ? data?.desc.slice(0, 100) + "..." : data.desc}
             </p>
           </div>
         </div>
