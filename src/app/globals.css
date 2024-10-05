@@ -274,6 +274,23 @@ button.active-page{
 }
 
 
+button.iekbcc0{
+  background-color: var(--bg-light) !important;
+  color: var(--dark) !important;
+}
+div.iekbcc0{
+  color: var(--dark) !important;
+  border: none !important;
+}
+
+
+.hero_crousel .slick-track{
+  transform: translateY(-50px);
+}
+.hero_crousel button.slick-arrow{
+  display: none !important;
+}
+
 @media (max-width:575px) {
 
 .hideOnMobile {

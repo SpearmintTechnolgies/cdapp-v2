@@ -739,7 +739,7 @@ const page = () => {
               </div>
               <div className="d-flex gap-1">
             
-                {tokenData?.verified?"Verified":  <button onClick={verifyTokenContract} className="border-0 text-secondary ÷bg-transparent"><i title="verify"  class="bi bi-link"></i></button>}
+                {tokenData?.verified?"Verified":  <button onClick={verifyTokenContract} className="border-0 text-secondary bg-transparent"><i title="verify"  class="bi bi-link"></i></button>}
                 
               </div>
             </div>
@@ -802,7 +802,7 @@ const page = () => {
         <div
           className={
             style.right_inside +
-            " d-md-flex gap-4 justify-content-between d-lg-block flex-wrap"
+            " d-md-flex gap-4 justify-content-between flex-grow-1 d-lg-block flex-wrap"
           }
         >
           {

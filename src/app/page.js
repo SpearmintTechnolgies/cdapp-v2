@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 // import { Navbar } from "@/components/common/Navbar";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import { Hero } from "../components/home/Hero";
 import { Card } from "../components/home/Card";
@@ -24,6 +24,10 @@ import { Loader } from "../components/common/Loader";
 import { Top_Corousel_Card } from "../components/home/Top_Corousel_Card";
 import { Pagination } from "../components/home/Pagination";
 // import { Profile } from "@/components/modals/Profile";
+// import { useKeenSlider } from 'keen-slider/react' 
+// import 'keen-slider/keen-slider.min.css';
+// import 'slick-carousel';
+import Marquee from "react-fast-marquee";
 
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const arr2 = [1, 2, 3, 4, 5, 6];
@@ -38,7 +42,10 @@ export default function Home() {
 
   const [sortOption, setSortOption] = useState("1");
   const [pop, setPop] = useState("")
-  const [c_page, setPage] = useState([])
+  const [c_page, setPage] = useState([]);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [isPaused, setIsPaused] = useState(false);
+  const sliderRef = useRef(null);
 
   const handleSorting = (value) => {
     // console.warn("sect value is this " + value)
@@ -213,69 +220,69 @@ export default function Home() {
         breakpoint: 1499,
         settings: {
           slidesToShow: 3.3
-          
+
         }
       },
       {
         breakpoint: 1300,
         settings: {
           slidesToShow: 3
-          
+
         }
       },
       {
         breakpoint: 1199,
         settings: {
           slidesToShow: 2.5
-          
+
         }
       },
       {
         breakpoint: 992,
         settings: {
           slidesToShow: 2
-         
+
         }
       },
       {
         breakpoint: 800,
         settings: {
           slidesToShow: 1.85
-      
+
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1.55
-      
+
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1.35
-      
+
         }
-      },{
+      }, {
         breakpoint: 550,
         settings: {
           slidesToShow: 1.1
-      
+
         }
       },
       {
         breakpoint: 450,
         settings: {
           slidesToShow: 1
-      
+
         }
       },
       {
         breakpoint: 390,
         settings: {
           slidesToShow: 0.8
-      
+
         }
       }
     ]
@@ -289,20 +296,40 @@ export default function Home() {
     })
       .then((_data) => {
         setLatestTrade(_data.data.trades);
-    
+
       })
       .catch((err) => {
         //  throw err
         console.log(err);
       });
   };
-  useEffect(()=>{
+  useEffect(() => {
     getTrades()
-  },[])
+  }, [])
+
+  // useEffect(() => {
+  //   $(sliderRef.current).slick({
+  //     dots: true,
+  //     infinite: true,
+  //     speed: 500,
+  //     autoplay: true,
+  //     autoplaySpeed: 2000,
+  //     pauseOnHover: true,
+  //     slidesToShow: 3,
+  //     slidesToScroll: 1,
+  //   });
+
+  //   // Cleanup: destroy slick slider on component unmount
+  //   return () => {
+  //     $(sliderRef.current).slick('unslick');
+  //   };
+  // }, []);
+
+
   return (
     <div className="home_bg">
       {/* <Navbar /> */}
-      <div className={styles.tc + " py-3"}>
+      <div ref={sliderRef} className={styles.tc + " py-3"}>
         {/* <div className={styles.track}>
           <Top_Corousel_Card />
           <Top_Corousel_Card />
@@ -312,13 +339,16 @@ export default function Home() {
           <Top_Corousel_Card />
 
         </div> */}
-        <Slider {...settings1}>
-          {latestTrade?.map((data,i)=>(
-            <Top_Corousel_Card key={i} data={data}/>
-          ))
-           }
-       
-        </Slider>
+        {/* <Slider {...settings1}> */}
+        <Marquee
+        pauseOnHover="true"
+        speed={150}
+        >
+          {latestTrade?.map((data, i) => (
+            <Top_Corousel_Card key={i} data={data} />
+          ))}
+        </Marquee>
+        {/* </Slider> */}
       </div>
       <div>
         <Hero />
@@ -418,7 +448,7 @@ export default function Home() {
         </div>
         <div className="row mt-5 gap-xl-4 gap-3 justify-content-center">
           {tab === "terminal"
-            ? filteredCoins?.map((e, i) => <Card data={e} setPop={setPop} />)
+            ? c_page?.map((e, i) => <Card data={e} setPop={setPop} />)
             : null}
 
           {tab === "following"
@@ -432,7 +462,9 @@ export default function Home() {
             )) : null
           }
         </div>
-        <Pagination stor={filteredCoins} page={setPage}/>
+        {/* {filteredCoins&& */}
+        <Pagination stor={filteredCoins} setPage={setPage} />
+        {/* } */}
       </section>
       <Footer />
       {/* <Profile/> */}
