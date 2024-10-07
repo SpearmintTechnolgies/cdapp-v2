@@ -13,7 +13,12 @@
 .left_inside .row1 h1 {
   font-size: 1.25rem;
   font-weight: 600;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .left_inside .row1 > div:first-child > div:nth-child(2) span {
   font-size: 12px;
   opacity: 0.7;
@@ -347,8 +352,18 @@
     line-height: 10px;
     margin-left: 3rem;
   }
+  .left_inside .row1 > div:first-child > div:nth-child(2), .left_inside .row1 > div:first-child > div:nth-child(1){
+    width: 100%;
+  }
+  .left_inside .row1 > div:first-child > div:nth-child(1)>div {
+    width: 80%;
+  }
 }
-
+@media (max-width: 490px) {
+  .left_inside .row1 > div:first-child > div:nth-child(1)>div{
+    width: 75%;
+  }
+}
 @media (max-width: 416px) {
   .indside_container {
     margin: auto 1rem;

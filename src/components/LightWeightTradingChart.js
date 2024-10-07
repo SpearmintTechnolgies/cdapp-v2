@@ -2,9 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
 import { color } from 'highcharts';
+import { light } from '@mui/material/styles/createPalette';
 
 const CandlestickChart = ({ chartData }) => {
-  const [isdark, setDark] = useState(false)
+  const [isdark, setDark] = useState("light")
+
 
 
   const chartContainerRef = useRef(null);
@@ -12,26 +14,52 @@ const CandlestickChart = ({ chartData }) => {
     return new Date().getFullYear() + "-" + (new Date().getMonth() < 10 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth()) + "-" + (new Date().getDate() < 10 ? "0" + (new Date().getDate()) : new Date().getDate())
   }
 
+  // const checkMode = () => {
+  //   if (typeof window !== 'undefined') {
+  //     const bodyStyle = window.getComputedStyle(document.body);
+  //     const bgColor = bodyStyle.getPropertyValue('background-color');
+  //     if (bgColor === 'rgb(0, 0, 0)' || bgColor === '#000000') {
+  //       // console.warn(bgColor)
+  //       setDark(true);  // Set dark mode if background is dark
+  //     } else {
+  //       setDark(false); // Otherwise, set light mode
+  //     }
+  //   }
+  // };
+
   const checkMode = () => {
-    if (typeof window !== 'undefined') {
-      const bodyStyle = window.getComputedStyle(document.body);
-      const bgColor = bodyStyle.getPropertyValue('background-color');
-      if (bgColor === 'rgb(0, 0, 0)' || bgColor === '#000000') {
-        // console.warn(bgColor)
-        setDark(true);  // Set dark mode if background is dark
-      } else {
-        setDark(false); // Otherwise, set light mode
-      }
+    const localVal = localStorage.getItem("theme_mode");
+    if(localVal !== isdark){
+      console.log("Intire:", isdark)
+      setDark(localVal)
+
     }
-  };
+
+    setTimeout(() =>{
+      checkMode()
+    }, 2000)
+    console.log(localVal)
+   
+  }
+
+  let flag = true;
 
   useEffect(() => {
-    checkMode()
+    if (flag) {
+      checkMode()
+      flag = false;
+    }
+
+  }, [isdark])
+
+
+  useEffect(() => {
+
     // console.warn(isdark)
     const chart = createChart(chartContainerRef.current, {
       height: 400,
       layout: {
-        background:{color:isdark ? "#222" : '#fff',},
+        background: { color: isdark === "dark" ? "#222" : '#fff', },
         // backgroundColor: isdark ? "#222" : '#000',
         // background: { color: "var(--light)" },
         // background:"var(--light)",
@@ -75,7 +103,7 @@ const CandlestickChart = ({ chartData }) => {
       console.log(parsedChartData); // Check if data is correctly parsed
       candlestickSeries.setData(parsedChartData);
     }
-    
+
 
 
     candlestickSeries.applyOptions({
@@ -92,6 +120,7 @@ const CandlestickChart = ({ chartData }) => {
       chart.remove();
     };
   }, [chartData, isdark]);
+
 
 
   return (

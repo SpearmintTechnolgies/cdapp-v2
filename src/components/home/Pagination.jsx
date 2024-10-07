@@ -2,7 +2,7 @@ import style from '@/src/app/page.module.css'
 import { useEffect, useRef, useState } from 'react'
 
 export const Pagination = ({ stor, setPage }) => {
-    const [t_page, setTpage] = useState(Math.ceil(stor.length / 3))
+    const [t_page, setTpage] = useState(Math.ceil(stor.length / 9))
     const currentIndex = useRef(0)
 
     function handledot() {
@@ -31,8 +31,8 @@ export const Pagination = ({ stor, setPage }) => {
         currentIndex.current = currentIndex.current + 1;
         btnlist[currentIndex.current].classList.add("active-page")
 
-        let start = currentIndex.current*3;
-        let end = (currentIndex.current*3)+3>stor.length? stor.length:(currentIndex.current*3)+3;
+        let start = currentIndex.current*9;
+        let end = (currentIndex.current*9)+9>stor.length? stor.length:(currentIndex.current*9)+9;
         console.warn(end>stor.length)
         setPage(stor.slice(start, end))
         handledot()
@@ -46,8 +46,8 @@ export const Pagination = ({ stor, setPage }) => {
         currentIndex.current = currentIndex.current - 1;
         btnlist[currentIndex.current].classList.add("active-page")
 
-        let start = currentIndex.current*3;
-        let end = (currentIndex.current*3)+3>stor.length? stor.length:(currentIndex.current*3)+3;
+        let start = currentIndex.current*9;
+        let end = (currentIndex.current*9)+9>stor.length? stor.length:(currentIndex.current*9)+9;
         console.warn(end>stor.length)
         setPage(stor.slice(start, end))
         handledot()
@@ -58,8 +58,8 @@ export const Pagination = ({ stor, setPage }) => {
         currentIndex.current = Number(e.target.value);
         e.target.classList.add("active-page")
 
-        let start = currentIndex.current*3;
-        let end = (currentIndex.current*3)+3>stor.length? stor.length:(currentIndex.current*3)+3;
+        let start = currentIndex.current*9;
+        let end = (currentIndex.current*9)+9>stor.length? stor.length:(currentIndex.current*9)+9;
         console.warn(end>stor.length)
         setPage(stor.slice(start, end))
 
@@ -68,8 +68,8 @@ export const Pagination = ({ stor, setPage }) => {
     }
     useEffect(()=>{
         if(stor.length>0){
-            setTpage(Math.ceil(stor.length / 3))
-            setPage(stor.slice(0,3))
+            setTpage(Math.ceil(stor.length / 9))
+            setPage(stor.slice(0,9))
         }
     },[stor])
 

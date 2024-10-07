@@ -559,7 +559,7 @@ a.social_t:hover {
 }
 
 .pagi_parent .track{
-  width: 114px;
+  max-width: 114px;
   overflow: hidden;
 }
 

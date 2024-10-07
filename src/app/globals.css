@@ -291,6 +291,15 @@ div.iekbcc0{
   display: none !important;
 }
 
+/* connect modal css */
+[data-rk] .ju367vb6 {
+  background: var(--home-bg) !important;
+}
+
+[data-rk] .ju367vgu {
+  color:var(--bs-heading-color)!important;
+}
+
 @media (max-width:575px) {
 
 .hideOnMobile {

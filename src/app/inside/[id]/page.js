@@ -45,6 +45,7 @@ const page = () => {
   const [verifySuccess, setVerifySuccess] = useState(null);
   const [verifyErr, setVerifyErr] = useState(null);
   const [trades, setTrades] = useState([]);
+  const [chartBg , setCartBg] = useState(false)
   const getHolderDistribution = async () => {
     await axios({
       method: "GET",
@@ -641,7 +642,7 @@ const page = () => {
         {/* Right content ============================================================= */}
         <div className={style.left_inside + " col-lg-8"}>
           <div className={style.row1 + " p-md-5 p-sm-4 p-2"}>
-            <div className="d-flex flex-column flex-sm-row justify-content-between p-3 p-sm-0">
+            <div className="d-flex flex-column flex-wrap gap-2  flex-sm-row justify-content-between p-3 p-sm-0">
               <div className="d-flex gap-3">
                 <Typography
                   component={"img"}
@@ -670,7 +671,7 @@ const page = () => {
                   </div>
                 </div>
               </div>
-              <div className="d-flex  justify-content-between gap-xxl-5 gap-md-3 gap-4">
+              <div className="d-flex  justify-content-between gap-xxl-5 gap-md-3 gap-2 flex-wrap ">
                 <div className="d-flex align-items-center d-sm-block gap-2 ">
                   <span>Symbol</span>
                   <p className="mb-0">{tokenData?.symbol}</p>
@@ -838,7 +839,7 @@ const page = () => {
 
           {
             parseInt(projects?.[4]) == 2 &&
-            <div className="mt-3">
+            <div className="mb-3">
               <Link href={`https://www.archerswap.finance/swap?outputCurrency=${projects?.[8]}`} className="text-uppercase text-decoration-none d-flex justify-content-between align-items-center px-3 py-2" target="_blank"
                 style={{
                   border: "1px solid var(--main_color)",
