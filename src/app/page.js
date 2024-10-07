@@ -288,6 +288,10 @@ export default function Home() {
     ]
   };
 
+
+
+  
+
   const [latestTrade, setLatestTrade] = useState([]);
   const getTrades = async () => {
     await axios({

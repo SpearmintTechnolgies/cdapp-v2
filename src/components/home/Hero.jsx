@@ -17,6 +17,9 @@ export const Hero = () => {
     const [modal, setModal] = useState(null)
     const { crownData } = useContext(ContractContext);
     const [commentData, setCommentData] = useState([]);
+
+  const { coinData } = useContext(ContractContext);
+
     const getComments = async () => {
         await axios({
             method: "GET",
@@ -37,12 +40,38 @@ export const Hero = () => {
                 console.log(err);
             });
     };
+
+
+    
+
+
     useEffect(() => {
         getComments()
+      
     }, [crownData?.coinsData?._id])
     const hide = () => {
         setModal(null)
     }
+
+    const [latestTrade, setLatestTrade] = useState([]);
+    const getTrades = async () => {
+      await axios({
+        method: "GET",
+        url: `${API_URL}/get/latest/trades`,
+      })
+        .then((_data) => {
+          setLatestTrade(_data.data.trades);
+  
+        })
+        .catch((err) => {
+          //  throw err
+          console.log(err);
+        });
+    };
+    useEffect(() => {
+      getTrades()
+    }, [])
+
 
     const { address } = useAccount()
 
@@ -108,12 +137,13 @@ export const Hero = () => {
                     </div>
                     <div className={Style.carousel+" hero_crousel"}>
                         <Slider {...settings}>
-                            <New_token_card />
-                            <New_token_card />
-                            <New_token_card />
-                            <New_token_card />
-                            <New_token_card />
-                            <New_token_card />
+                            {
+                                coinData?.map((v,i) => {      
+                                    return (
+                                        <New_token_card data={v} />                                 
+                                    )                            
+                                })
+                            }
                         </Slider>
                     </div>
                 </div>

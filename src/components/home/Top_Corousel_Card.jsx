@@ -37,7 +37,7 @@ export const Top_Corousel_Card = ({ data }) => {
             -4
           )}`}</p>
           <p className={style.sold}>Sold</p>
-          <p className='text-nowrap'>{parseFloat(formatEther(data?.amount?.toString())).toFixed(3)} Core of</p>
+          <p className='text-nowrap'>{parseFloat(formatEther(data?.amount?.toString() || 0)).toFixed(3)} Core of</p>
         </div>
         <div className={`${style.right} d-flex align-items-center gap-2`}>
           <Typography
