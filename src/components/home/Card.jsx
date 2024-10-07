@@ -191,8 +191,15 @@ export const Card = ({ data, dex, setPop }) => {
           <input
             id="input_curve"
             type="range"
+            value={data?.marketValue > 0
+              ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
+              : 0}
             style={{
-              background: `linear-gradient(to right, #F2890C 50%, var(--home-bg) 50%`,
+              background: `linear-gradient(to right, #F2890C ${data?.marketValue > 0
+                ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
+                : 0}%, var(--home-bg) ${data?.marketValue > 0
+              ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
+              : 0}%`,
               height: "8px",
               border: "1px solid #0000000D"
             }}
