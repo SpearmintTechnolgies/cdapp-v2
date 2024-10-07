@@ -30,16 +30,12 @@ const CandlestickChart = ({ chartData }) => {
   const checkMode = () => {
     const localVal = localStorage.getItem("theme_mode");
     if(localVal !== isdark){
-      console.log("Intire:", isdark)
       setDark(localVal)
-
     }
 
     setTimeout(() =>{
       checkMode()
     }, 2000)
-    console.log(localVal)
-   
   }
 
   let flag = true;
@@ -55,14 +51,10 @@ const CandlestickChart = ({ chartData }) => {
 
   useEffect(() => {
 
-    // console.warn(isdark)
     const chart = createChart(chartContainerRef.current, {
       height: 400,
       layout: {
         background: { color: isdark === "dark" ? "#222" : '#fff', },
-        // backgroundColor: isdark ? "#222" : '#000',
-        // background: { color: "var(--light)" },
-        // background:"var(--light)",
         textColor: "#C3BCDB",
       },
       grid: {

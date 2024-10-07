@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-export const Card = ({ data, dex, setPop }) => {
+export const Card = ({ data, dex, setPop, index }) => {
   const rout = useRouter()
   const { data: getMarketCap } = useReadContract({
     abi: TOKEN_COIN_ABI,
@@ -88,7 +88,7 @@ export const Card = ({ data, dex, setPop }) => {
   }
 
   return (
-    <div className={style.card} >{/*onClick={()=>setPop("happend")}*/}
+    <div className={`${style.card} ${index==0?"activecard":""}`} >{/*add activecard class to for vibrate animation like other site*/}
       <a
         // href={`#`} 
         // href={`/inside/${data?._id}`}

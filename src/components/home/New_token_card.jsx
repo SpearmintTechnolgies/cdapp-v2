@@ -31,7 +31,7 @@ export const New_token_card = ({data}) => {
   return (
     <div className={style.nt_card+" d-flex justify-content-between align-items-center"}>
         <div className="d-flex gap-2 align-items-center">
-            <img style={{"borderRadius" : "5px"}} width={"50px"} src={data?.image} alt="" />
+            <img style={{"borderRadius" : "20px"}} width={"50px"} src={data?.image} alt="" />
             <div>
                 <h3>{data?.symbol}</h3>
                 <p className="mb-0">by {user?.username?.length > 8

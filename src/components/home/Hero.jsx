@@ -102,9 +102,9 @@ export const Hero = () => {
         vertical: true,
         // verticalSwiping: true,
         autoplay: true,
-        speed: 2000,
+        speed: 800,
         rtl:true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 100,
         // beforeChange: function(currentSlide, nextSlide) {
         //   console.log("before change", currentSlide, nextSlide);
         // },

@@ -267,6 +267,51 @@ button.activetab {
   display: none;
 }
 
+/* active card */
+div.activecard{
+  background: linear-gradient(142.55deg, #ED9123 25.25%, #F09C37 78.31%);
+  color: #ffffff;
+  animation: vibrate .5s ease;
+}
+@keyframes vibrate {
+  0%{
+    transform: translateX(0px);
+  }
+  15%{
+    transform: translateX(10px);
+  }
+  30%{
+    transform: translateX(-20px);
+  }
+  50%{
+    transform: translateX(10px);
+  }
+  65%{
+    transform: translateX(-20px);
+  }
+  80%{
+    transform: translateX(10px);
+  }
+  90%{
+    transform: translateX(-20px);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+div.activecard p,
+div.activecard span,
+div.activecard p a,
+div.activecard h3{
+  color: #fff !important;
+}
+
+div.activecard #input_curve{
+  background:   linear-gradient(to right, #ffffff 50%, #FCF4EA21 50%) !important;
+  border: none !important;
+}
+
 
 /*  home page pagination ==================== */
 button.active-page{
@@ -298,6 +343,13 @@ div.iekbcc0{
 
 [data-rk] .ju367vgu {
   color:var(--bs-heading-color)!important;
+}
+[data-rk] .ju367va3{
+  background: var(--bg-light) !important;
+}
+[data-rk] .ju367vh0{
+  color: var(--dark) !important;
+  opacity: .6;
 }
 
 @media (max-width:575px) {

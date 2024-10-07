@@ -346,7 +346,7 @@ export default function Home() {
         {/* <Slider {...settings1}> */}
         <Marquee
         pauseOnHover="true"
-        speed={150}
+        speed={350}
         >
           {latestTrade?.map((data, i) => (
             <Top_Corousel_Card key={i} data={data} />
@@ -368,7 +368,6 @@ export default function Home() {
           </div> */}
           </div>
           <div className={styles.slider + " slider-container position-relative"}>
-            {console.warn("listed coins ", listedCoins)}
             <Slider {...settings}>
               {listedCoins?.map((e, i) => <Card data={e} dex={true} setPop={setPop} />)}
             </Slider>
@@ -452,7 +451,7 @@ export default function Home() {
         </div>
         <div className="row mt-5 gap-xl-4 gap-3 justify-content-center">
           {tab === "terminal"
-            ? c_page?.map((e, i) => <Card data={e} setPop={setPop} />)
+            ? c_page?.map((e, i) => <Card data={e} index={i} key={i} setPop={setPop} />)
             : null}
 
           {tab === "following"
