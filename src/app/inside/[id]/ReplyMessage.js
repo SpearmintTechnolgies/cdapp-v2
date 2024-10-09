@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 
 
-const ReplyMessage = ({ data, index, mainReplyId, getReplyComments,getComments}) => {
+const ReplyMessage = ({ data, index, mainReplyId, getReplyComments, getComments }) => {
   const { id: projectId } = useParams()
   const { isConnected } = useAccount()
 
@@ -94,8 +94,8 @@ const ReplyMessage = ({ data, index, mainReplyId, getReplyComments,getComments})
   }, [data?._id])
   return (
     <Box className={style.comment_card} sx={{
-      ml: "3rem"
-    }}>
+      ml: {md:"3rem" , xs:"2rem"},
+    }}  >
       <div className="d-flex flex-column flex-sm-row justify-content-between">
         <div className="d-flex gap-2">
           {!data?.userId?.image ? (
@@ -110,8 +110,15 @@ const ReplyMessage = ({ data, index, mainReplyId, getReplyComments,getComments})
               borderRadius={"100%"}
             />
           )}
-          <div>
-            <h4>
+          <div className="flex-grow-1" style={{
+            width: "150px"
+          }}>
+            <h4 className="w-100"
+              style={{
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+                whiteSpace: "nowrap"
+              }}>
               <Link
                 href="/profile/userId"
                 className="text-decoration-none"
@@ -136,12 +143,12 @@ const ReplyMessage = ({ data, index, mainReplyId, getReplyComments,getComments})
                   <p className="opacity-50 fw-bold mb-0">{likes?.length}</p>
                 </div>
                 {isConnected && (
-                  <button className="border-0 p-0 fw-semibold bg-transparent" 
+                  <button className="border-0 p-0 fw-semibold bg-transparent"
                     style={{
-                      fontSize:"14px",
+                      fontSize: "14px",
                       color: "var(--main_color)"
                     }}
-                  onClick={handleClickOpen}>Reply</button>
+                    onClick={handleClickOpen}>Reply</button>
                 )}
               </div>
             </div>

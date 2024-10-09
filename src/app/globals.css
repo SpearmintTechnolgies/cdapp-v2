@@ -308,7 +308,7 @@ div.activecard h3{
 }
 
 div.activecard #input_curve{
-  background:   linear-gradient(to right, #ffffff 50%, #FCF4EA21 50%) !important;
+  /* background:   linear-gradient(to right, #ffffff 50%, #FCF4EA21 50%) !important; */
   border: none !important;
 }
 

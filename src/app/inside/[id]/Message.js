@@ -128,8 +128,15 @@ const Message = ({ data, key,getComments }) => {
                 borderRadius={"100%"}
               />
             )}
-            <div>
-              <h4>
+            <div className="flex-grow-1" style={{
+              width:"200px"
+            }}>
+              <h4 className="w-100" 
+              style={{
+                textOverflow:"ellipsis",
+                overflow:"hidden",
+                whiteSpace:"nowrap"
+              }}>
                 <Link
                   href={`/profile/${data?.userId?._id}`}
                   className="text-decoration-none"

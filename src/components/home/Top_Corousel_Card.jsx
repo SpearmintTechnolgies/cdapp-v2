@@ -2,6 +2,7 @@ import style from '@/src/app/page.module.css'
 import { API_URL } from '@/src/Config';
 import { Typography } from '@mui/material';
 import axios from 'axios';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { formatEther } from 'viem'
 
@@ -30,7 +31,7 @@ export const Top_Corousel_Card = ({ data }) => {
   }, [data?.project])
 
   return (
-    <div className='w-100 px-2'>
+    <Link href={`/inside/${tokenData?._id}`} className='d-block text-decoration-none w-100 px-2'>
       <div key={data?._id} className={style.tc_card + " d-flex align-items-center gap-2 w-100"}>
         <div className={`${style.left} d-flex align-items-center gap-2`}>
           <p>{`${data?.user?.slice(0, 6)}...${data?.user?.slice(
@@ -53,6 +54,6 @@ export const Top_Corousel_Card = ({ data }) => {
           )}` : tokenData?.name}</p>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -87,6 +87,7 @@ export const Card = ({ data, dex, setPop, index }) => {
     }
   }
 
+
   return (
     <div className={`${style.card} ${index==0?"activecard":""}`} >{/*add activecard class to for vibrate animation like other site*/}
       <a
@@ -195,9 +196,9 @@ export const Card = ({ data, dex, setPop, index }) => {
               ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
               : 0}
             style={{
-              background: `linear-gradient(to right, #F2890C ${data?.marketValue > 0
+              background: `linear-gradient(to right, ${index==0?"#fff":"#F2890C"} ${data?.marketValue > 0
                 ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
-                : 0}%, var(--home-bg) ${data?.marketValue > 0
+                : 0}%, ${index==0?"#FCF4EA21":"var(--home-bg)"} ${data?.marketValue > 0
               ? parseFloat(data?.marketValue).toFixed(2)*100/18859.53
               : 0}%`,
               height: "8px",

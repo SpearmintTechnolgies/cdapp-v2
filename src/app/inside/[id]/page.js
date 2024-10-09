@@ -658,7 +658,7 @@ const page = () => {
                     <p className="mb-0 text-nowrap opacity-75">
                       Badge <strong>Crown</strong>
                     </p>
-                    <p className="mb-0 text-nowrap fw-blod">
+                    <p className="mb-0 text-nowrap col-md-6 col-12 fw-blod">
                       <Link
                         href={`/profile/${user?._id}`}
                         className="text-decoration-none"
@@ -672,11 +672,11 @@ const page = () => {
                 </div>
               </div>
               <div className="d-flex  justify-content-between gap-xxl-5 gap-md-3 gap-2 flex-wrap ">
-                <div className="d-flex align-items-center d-sm-block gap-2 ">
+                <div className="d-flex flex-sm-column gap-sm-1 align-items-center gap-2 ">
                   <span>Symbol</span>
                   <p className="mb-0">{tokenData?.symbol}</p>
                 </div>
-                <div className="d-flex align-items-center d-sm-block gap-2 ">
+                <div className="d-flex flex-sm-column gap-sm-1 align-items-center gap-2 ">
                   <span>Market cap</span>
                   <p className="mb-0 text-nowrap">
                     ${formatNumber(parseFloat(marketCap).toFixed(2))}
